@@ -1,0 +1,12 @@
+.\debug\uart.o: MCUINIT\UART.c
+.\debug\uart.o: .\Startup\XMC1100.h
+.\debug\uart.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm0.h
+.\debug\uart.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\uart.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\debug\uart.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+.\debug\uart.o: .\Startup\system_XMC1100.h
+.\debug\uart.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\uart.o: MCUINIT\UART.h
+.\debug\uart.o: .\Source\gpio_xmc1100_tssop38.h
+.\debug\uart.o: MCUINIT\UART.h
+.\debug\uart.o: MCUINIT\datatransfer.h

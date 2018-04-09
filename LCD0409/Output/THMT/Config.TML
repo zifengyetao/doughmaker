@@ -1,0 +1,1 @@
+<Config><Screen w="800" h="480" angle="0"/><START Pg="PG0000.TML"/><BKL Lv="49"/><BUZ Ln="9"/><DIM Tm="600" Lv="11"/><TPI RtpDly="0" RtpSpd="0"/><RTC DisCal="0"/><BUAD bps="0"/><CRC En="0"/><HEAD1 Value="165"/><HEAD2 Value="90"/><TPKLOCK Value="0"/><CMD_PROMPT Value="1"/><Device ID="1"/></Config>

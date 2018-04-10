@@ -1,0 +1,13 @@
+.\debug\mcuinit.o: MCUINIT\MCUInit.c
+.\debug\mcuinit.o: .\Startup\XMC1100.h
+.\debug\mcuinit.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm0.h
+.\debug\mcuinit.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\mcuinit.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\debug\mcuinit.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+.\debug\mcuinit.o: .\Startup\system_XMC1100.h
+.\debug\mcuinit.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\mcuinit.o: MCUINIT\MCUInit.h
+.\debug\mcuinit.o: .\Source\gpio_xmc1100_tssop38.h
+.\debug\mcuinit.o: MCUINIT\UART.h
+.\debug\mcuinit.o: MCUINIT\UART.h
+.\debug\mcuinit.o: .\HARDWARE\TIMER\timer.h

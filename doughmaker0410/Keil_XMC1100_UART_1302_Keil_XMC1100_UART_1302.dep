@@ -1,0 +1,4 @@
+Dependencies for Project 'Keil_XMC1100_UART_1302', Target 'Keil_XMC1100_UART_1302': (DO NOT MODIFY !)
+F (.\Startup\startup_XMC1100.s)(0x51C7AFB0)(--cpu Cortex-M0 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Infineon\XMC1100--list .\startup_xmc1100.lst --xref -o .\startup_xmc1100.o --depend .\startup_xmc1100.d)
+F (.\Startup\system_XMC1100.c)(0x51132DFA)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Infineon\XMC1100-o .\system_xmc1100.o --omf_browse .\system_xmc1100.crf --depend .\system_xmc1100.d)
+F (.\Source\Main.c)(0x5125F4BA)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Infineon\XMC1100-o .\main.o --omf_browse .\main.crf --depend .\main.d)

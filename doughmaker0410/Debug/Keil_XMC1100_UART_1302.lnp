@@ -1,0 +1,20 @@
+--cpu Cortex-M0
+".\debug\startup_xmc1100.o"
+".\debug\system_xmc1100.o"
+".\debug\main_1.o"
+".\debug\datatanrsfer.o"
+".\debug\eru0.o"
+".\debug\gpio.o"
+".\debug\mcuinit.o"
+".\debug\uart.o"
+".\debug\init.o"
+".\debug\timer.o"
+".\debug\ds18b20.o"
+".\debug\delay.o"
+".\debug\wdt.o"
+".\debug\24cxx.o"
+".\debug\myiic.o"
+--strict --scatter ".\Debug\Keil_XMC1100_UART_1302.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Keil_XMC1100_UART_1302.map" -o .\Debug\Keil_XMC1100_UART_1302.axf

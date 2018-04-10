@@ -22,7 +22,8 @@
  #include <stdbool.h>
  #include "UART.h"
  #include "delay.h"
-
+ #include <record_map.h>
+#include <24cxx.h>
 int s=0,n=0;
 /*****************************************************************************
 *     Macro Definitions
@@ -204,7 +205,7 @@ void ERU0_0_IRQHandler(void)//编码器
 			{
 				 	if(fast_slow_flag == 0)//快速状态
 					{					
-						 send_lcd_pack(WriteData,0x0008000E,++Time_data_number[0]);// 快速
+						 send_lcd_pack(WriteData,0x0008000E,++Time_data_number[0]);// 快速						 
 					}	
 				  else if(fast_slow_flag == 1 )//慢速状态
 					{

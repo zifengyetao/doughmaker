@@ -230,20 +230,26 @@ u32 deal_one_pack(u32 start_points)//改u32
 							Time_data_number[2] = key_number[1];
 							send_lcd_pack(WriteData,0x00080004,key_number[1]);
 							send_lcd_pack(WriteTime,0x0002FFE4,key_number[1]);
+						
+							AT24CXX_Write(auto_page_pointer,&key_number[1],1);
 							break;
 					}
 					case 0x18://和面勾慢速
 					{
 						Time_data_number[3] = key_number[1];
 						send_lcd_pack(WriteData,0x00080006,key_number[1]);//
-						send_lcd_pack(WriteTime,0x0002FFE8,key_number[1]);						
+						send_lcd_pack(WriteTime,0x0002FFE8,key_number[1]);
+
+						AT24CXX_Write(auto_page_pointer+2,&key_number[1],1);						
 						break;
 					}
 					case 0x1A://暂停
 					{
 						Time_data_number[4] = key_number[1];
 						send_lcd_pack(WriteData,0x00080008,key_number[1]);// ;
-						send_lcd_pack(WriteTime,0x0002FFEC,key_number[1]);	
+						send_lcd_pack(WriteTime,0x0002FFEC,key_number[1]);
+
+						AT24CXX_Write(auto_page_pointer+4,&key_number[1],1);
 						break;
 					}
 					case 0x1C://和面桶快速
@@ -251,6 +257,8 @@ u32 deal_one_pack(u32 start_points)//改u32
 						Time_data_number[5] = key_number[1];
 						send_lcd_pack(WriteData,0x0008000A,key_number[1]);//;
 						send_lcd_pack(WriteTime,0x0002FFF0,key_number[1]);	
+						
+						AT24CXX_Write(auto_page_pointer+6,&key_number[1],1);
 						break;
 					}
 					case 0x1E://和面桶慢速
@@ -258,6 +266,8 @@ u32 deal_one_pack(u32 start_points)//改u32
 						Time_data_number[6] = key_number[1];
 						send_lcd_pack(WriteData,0x0008000C,key_number[1]);//;
 						send_lcd_pack(WriteTime,0x0002FFF4,key_number[1]);	
+						
+						AT24CXX_Write(auto_page_pointer+8,&key_number[1],1);
 						break;
 					}
 					default:
@@ -360,6 +370,9 @@ u32 deal_one_pack(u32 start_points)//改u32
 							send_lcd_pack(WriteData,0x0008002E,0x0001);
 							send_lcd_pack(WriteData,0x00080030,0x0000);
 					 
+						//写eeprom
+						AT24CXX_Write(Hand_page_pointer,&Time_data_number[0],1);
+						AT24CXX_Write(Hand_page_pointer+2,&Time_data_number[1],1);
 						//下面控制器指令
 					 
 							send_speed_pack(0x00,speed_flag,turn_flag);// 
@@ -474,6 +487,13 @@ u32 deal_one_pack(u32 start_points)//改u32
 					auto_stop_new_flag = 0;//暂停
 				  send_lcd_pack(WriteData,0x0008003E,0x0001);
 					send_lcd_pack(WriteData,0x00080040,0x0000);
+					
+					//写eeprom
+					AT24CXX_Write(auto_page_pointer,&Time_data_number[2],1);
+					AT24CXX_Write(auto_page_pointer+2,&Time_data_number[3],1);
+					AT24CXX_Write(auto_page_pointer+4,&Time_data_number[4],1);
+					AT24CXX_Write(auto_page_pointer+6,&Time_data_number[5],1);
+					AT24CXX_Write(auto_page_pointer+8,&Time_data_number[6],1);
 					
 					send_speed_pack(0x00,speed_flag,turn_flag);
 					Time_Flag[1] = !Time_Flag[1];//定时器1flag   时间到了flag取反

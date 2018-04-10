@@ -54,7 +54,7 @@ u8 send_lcd_pack_time(u8 grade,u32 address,u32 da);
 
  
 #define   BUF_RX_6_7        USART_RX_BUF[(start_points+7)]  // USART_RX_BUF[(start_points+6)]*256+
-#define 		BUF_TX_6_7_2		{USART_TX_BUF[6]=da>>8;USART_TX_BUF[7]=(u8)da;len=2;valid_flag=1;}					
+#define 	BUF_TX_6_7_2		{USART_TX_BUF[6]=da>>8;USART_TX_BUF[7]=(u8)da;len=2;valid_flag=1;}					
  
 
  

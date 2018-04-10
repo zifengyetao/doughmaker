@@ -33,11 +33,8 @@ void IIC_NAck(void);				//IIC²»·¢ËÍACKÐÅºÅ
 void IIC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
 u8 IIC_Read_One_Byte(u8 daddr,u8 addr);	  
 
-u8   READ_SDA_1(void);
+u8 READ_SDA_1(void);
 
- 
- 
- 
 #endif
 
 

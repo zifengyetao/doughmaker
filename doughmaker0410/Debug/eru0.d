@@ -13,3 +13,6 @@
 .\debug\eru0.o: MCUINIT\UART.h
 .\debug\eru0.o: MCUINIT\UART.h
 .\debug\eru0.o: MCUINIT\delay.h
+.\debug\eru0.o: .\MCUINIT\record_map.h
+.\debug\eru0.o: .\HARDWARE\24CXX\24cxx.h
+.\debug\eru0.o: .\HARDWARE\IIC\myiic.h

@@ -1,0 +1,9 @@
+.\debug\wdt.o: WDT\WDT.c
+.\debug\wdt.o: .\Startup\XMC1100.h
+.\debug\wdt.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm0.h
+.\debug\wdt.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\wdt.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\debug\wdt.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+.\debug\wdt.o: .\Startup\system_XMC1100.h
+.\debug\wdt.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\wdt.o: WDT\WDT.h

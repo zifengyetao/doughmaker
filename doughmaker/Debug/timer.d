@@ -1,0 +1,12 @@
+.\debug\timer.o: HARDWARE\TIMER\timer.c
+.\debug\timer.o: HARDWARE\TIMER\timer.h
+.\debug\timer.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\timer.o: .\Startup\XMC1100.h
+.\debug\timer.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm0.h
+.\debug\timer.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\debug\timer.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+.\debug\timer.o: .\Startup\system_XMC1100.h
+.\debug\timer.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\timer.o: .\Source\gpio_xmc1100_tssop38.h
+.\debug\timer.o: .\MCUINIT\UART.h
+.\debug\timer.o: .\MCUINIT\UART.h

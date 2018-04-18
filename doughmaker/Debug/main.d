@@ -1,0 +1,9 @@
+.\debug\main.o: Source\Main.c
+.\debug\main.o: .\Startup\XMC1100.h
+.\debug\main.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\core_cm0.h
+.\debug\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\main.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\cmsis_compiler.h
+.\debug\main.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\cmsis_armcc.h
+.\debug\main.o: .\Startup\system_XMC1100.h
+.\debug\main.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\main.o: Source\gpio_XMC1100_tssop38.h

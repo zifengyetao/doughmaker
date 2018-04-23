@@ -92,6 +92,8 @@ int auto_tub_reverse;//桶反转
 //*******
 u8 mainmotor[5] = {0x00,0x00,0x00,0x00,0x00};//主电机方向和转速
 u8 assmotor[5] = {0x00,0x00,0x00,0x00,0x00};//副电机方向和转速
+//**********
+int timer_num_flag;//定时器运行flag
  //管理收到的触摸屏的串口信息
 void manage_one_pack(void)
 {
@@ -289,6 +291,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 	
 	if(hx5==0x77)//键盘输入
 	{
+		
 		if((USART_RX_BUF[(start_points+2)&s_limit]==0x00)&&(USART_RX_BUF[(start_points+3)&s_limit]==0x08))    // 
 		{		
        key_number[0]= (USART_RX_BUF[(start_points+6)]);
@@ -299,6 +302,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					//----页面1
 					case 0x12://快速
 					{
+						send_lcd_pack(WriteData,0x0008002E,0x0000);
 						if(fast_slow_flag == 0)
 						{
 							Time_data_number[0] = key_number[1];
@@ -310,6 +314,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					}
 					case 0x14://慢速
 					{
+						send_lcd_pack(WriteData,0x0008002E,0x0000);
 						if(fast_slow_flag == 1)
 						{
 							Time_data_number[1] = key_number[1];
@@ -323,9 +328,12 @@ u32 deal_one_pack(u32 start_points)//改u32
 					case 0x16://和面勾快速
 					{
 							Time_data_number[2] = key_number[1];
-							send_lcd_pack(WriteData,0x00080004,key_number[1]);
-							send_lcd_pack(WriteTime,0x0002FFE4,key_number[1]);
-						
+							send_lcd_pack(WriteData,0x00080004,key_number[1]);						
+						 
+									send_lcd_pack(WriteTime,0x0002FFE4,key_number[1]*60);
+									 
+						 				 
+						  						  
 							AT24CXX_Write(auto_page_pointer,&key_number[1],1);
 							break;
 					}
@@ -333,7 +341,13 @@ u32 deal_one_pack(u32 start_points)//改u32
 					{
 						Time_data_number[3] = key_number[1];
 						send_lcd_pack(WriteData,0x00080006,key_number[1]);//
-						send_lcd_pack(WriteTime,0x0002FFE8,key_number[1]);
+						
+						 
+								 
+						send_lcd_pack(WriteTime,0x0002FFE8+i,key_number[1]*60);
+								 
+					 
+						
 
 						AT24CXX_Write(auto_page_pointer+2,&key_number[1],1);						
 						break;
@@ -342,7 +356,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					{
 						Time_data_number[4] = key_number[1];
 						send_lcd_pack(WriteData,0x00080008,key_number[1]);// ;
-						send_lcd_pack(WriteTime,0x0002FFEC,key_number[1]);
+						send_lcd_pack(WriteTime,0x0002FFEC,key_number[1]*60);
 
 						AT24CXX_Write(auto_page_pointer+4,&key_number[1],1);
 						break;
@@ -351,7 +365,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					{
 						Time_data_number[5] = key_number[1];
 						send_lcd_pack(WriteData,0x0008000A,key_number[1]);//;
-						send_lcd_pack(WriteTime,0x0002FFF0,key_number[1]);	
+						send_lcd_pack(WriteTime,0x0002FFF0,key_number[1]*60);	
 						
 						AT24CXX_Write(auto_page_pointer+6,&key_number[1],1);
 						break;
@@ -360,7 +374,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					{
 						Time_data_number[6] = key_number[1];
 						send_lcd_pack(WriteData,0x0008000C,key_number[1]);//;
-						send_lcd_pack(WriteTime,0x0002FFF4,key_number[1]);	
+						send_lcd_pack(WriteTime,0x0002FFF4,key_number[1]*60);	
 						
 						AT24CXX_Write(auto_page_pointer+8,&key_number[1],1);
 						break;
@@ -381,15 +395,38 @@ u32 deal_one_pack(u32 start_points)//改u32
 						{
 							Time_Flag[0] = !Time_Flag[0];
 							send_lcd_pack(EnableTime,0x00FFFF00,0x00);//  除能定时器0 
+							send_lcd_pack(WriteData,0x0008002E,0x0000);
+							send_lcd_pack(WriteData,0x00080030,0x0001);
 							send_speed_pack(SET,stop_speed_flag);//停止操作
 							break;
 						}
 						case 0xE4://定时器1
 						{
-							Time_Flag[1] = !Time_Flag[1];
+							//Time_Flag[1] = !Time_Flag[1];
+							timer_num_flag = 1;
 							send_lcd_pack(EnableTime,0x00FFFF01,0x00);//  除能定时器1
-							send_lcd_pack(EnableTime,0x00FFFF02,0x01);//  开启定时器2
-							
+							if(proce_flag[1])
+							{
+								send_lcd_pack(EnableTime,0x00FFFF02,0x01);//  开启定时器2
+							 
+							}
+							else if(proce_flag[2]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF03,0x01);//  开启定时器3
+							 
+							}
+							else if(proce_flag[3]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF04,0x01);//  开启定时器4
+								 
+							}
+							else if(proce_flag[4]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF05,0x01);//  开启定时器5
+								 
+							}
+							send_lcd_pack(WriteChinese,0x00000080,(u16)proce_number[1]);//正在进行
+							send_lcd_pack(WriteChinese,0x00000100,(u16)proce_number[2]);
 							
 							mainmotor[1] = 0x00;//勾慢速的时间
 							mainmotor[2] = 0x00;
@@ -400,19 +437,46 @@ u32 deal_one_pack(u32 start_points)//改u32
 						}
 						case 0xE8://定时器2
 						{
-							Time_Flag[2] = !Time_Flag[2];
+							//Time_Flag[2] = !Time_Flag[2];
+							timer_num_flag = 2;
 							send_lcd_pack(EnableTime,0x00FFFF02,0x00);//  除能定时器2
-							send_lcd_pack(EnableTime,0x00FFFF03,0x01);//  开启定时器3
-							
+							if(proce_flag[2]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF03,0x01);//  开启定时器3
+								 
+							}
+							else if(proce_flag[3]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF04,0x01);//  开启定时器4			
 							 
+							}								
+							else if(proce_flag[4]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF05,0x01);//  开启定时器5
+							
+							}
+														 
 							send_speed_pack(SET,stop_speed_flag);//				
 							break;
 						}
 						case 0xF0://定时器3
 						{
-							Time_Flag[3] = !Time_Flag[3];
+							//Time_Flag[3] = !Time_Flag[3];
+							timer_num_flag = 3;
 							send_lcd_pack(EnableTime,0x00FFFF03,0x00);//  除能定时器3 
-							send_lcd_pack(EnableTime,0x00FFFF04,0x01);//  开启定时器4
+							if(proce_flag[3]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF04,0x01);//  开启定时器4
+								
+							}
+							else if(proce_flag[4]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF05,0x01);//  开启定时器5
+						
+							}
+							
+							send_lcd_pack(WriteChinese,0x00000080,(u16)proce_number[2]);//正在进行
+							send_lcd_pack(WriteChinese,0x00000100,(u16)proce_number[3]);
 							
 							mainmotor[1] = 0x00;//勾慢速的时间
 							mainmotor[2] = 0x00;
@@ -423,9 +487,14 @@ u32 deal_one_pack(u32 start_points)//改u32
 						}
 						case 0xF4://定时器4
 						{
-							Time_Flag[4] = !Time_Flag[4];
+							//Time_Flag[4] = !Time_Flag[4];
+							timer_num_flag = 4;
 							send_lcd_pack(EnableTime,0x00FFFF04,0x00);//  除能定时器4
-							send_lcd_pack(EnableTime,0x00FFFF05,0x01);//  开启定时器5
+							if(proce_flag[4]) 
+							{
+								send_lcd_pack(EnableTime,0x00FFFF05,0x01);//  开启定时器5
+							
+							}
 							
 							mainmotor[1] = 0x00;//勾慢速的时间
 							mainmotor[2] = 0x00;
@@ -436,9 +505,13 @@ u32 deal_one_pack(u32 start_points)//改u32
 						}
 						case 0xF8://定时器5
 						{
-							Time_Flag[5] = !Time_Flag[5];
+							//Time_Flag[5] = !Time_Flag[5];
+							timer_num_flag = 0;
 							send_lcd_pack(EnableTime,0x00FFFF05,0x00);//  除能定时器5
 							
+							
+							send_lcd_pack(WriteChinese,0x00000080,(u16)proce_number[3]);//正在进行
+							send_lcd_pack(WriteChinese,0x00000100,(u16)proce_number[0]);
 							send_speed_pack(SET,stop_speed_flag);//停止
 							break;
 						}
@@ -633,12 +706,12 @@ u32 deal_one_pack(u32 start_points)//改u32
 				  send_lcd_pack(WriteData,0x0008003E,0x0001);
 					send_lcd_pack(WriteData,0x00080040,0x0000);
 					
-					//写eeprom
-					AT24CXX_Write(auto_page_pointer,&Time_data_number[2],1);//勾快速
-					AT24CXX_Write(auto_page_pointer+2,&Time_data_number[3],1);//勾慢速
-					AT24CXX_Write(auto_page_pointer+4,&Time_data_number[4],1);//暂停
-					AT24CXX_Write(auto_page_pointer+6,&Time_data_number[5],1);//桶快速
-					AT24CXX_Write(auto_page_pointer+8,&Time_data_number[6],1);//桶慢速
+//					//写eeprom
+//					AT24CXX_Write(auto_page_pointer,&Time_data_number[2],1);//勾快速
+//					AT24CXX_Write(auto_page_pointer+2,&Time_data_number[3],1);//勾慢速
+//					AT24CXX_Write(auto_page_pointer+4,&Time_data_number[4],1);//暂停
+//					AT24CXX_Write(auto_page_pointer+6,&Time_data_number[5],1);//桶快速
+//					AT24CXX_Write(auto_page_pointer+8,&Time_data_number[6],1);//桶慢速
 					
 					//发送至下面电机
 					mainmotor[0] = 0;//勾正转  0正转 1反转
@@ -649,8 +722,8 @@ u32 deal_one_pack(u32 start_points)//改u32
 									 
 					send_speed_pack(SET,0x00);//
 					//定时器操作
-					Time_Flag[1] = !Time_Flag[1];//定时器1flag   时间到了flag取反
-					send_lcd_pack(EnableTime,0x00FFFF01,Time_Flag[1]);//定时器1启动
+					//Time_Flag[1] = !Time_Flag[1];//定时器1flag   时间到了flag取反
+					send_lcd_pack(EnableTime,0x00FFFF01+timer_num_flag,0x01);//定时器1启动
 					break;
 				}
 				case 0x04://暂停
@@ -664,8 +737,7 @@ u32 deal_one_pack(u32 start_points)//改u32
 					send_speed_pack(SET,stop_speed_flag);//暂停--转速设为0
 					for(int i = 0; i < 5; ++i)
 					{
-						if(Time_Flag[i] == 1)
-						send_lcd_pack(EnableTime,0x00FFFF00+i,0x00);//定时器1关闭
+						send_lcd_pack(EnableTime,0x00FFFF00+i,0x00);//定时器关闭
 					}					
 					break;
 				}
@@ -871,7 +943,7 @@ u32 deal_one_pack_down(u32 start_points)//改u32
 	
 	}
 	else 
-	  {
+	{
 			h_recev_start=(start_points+0x01)&s_limit;
 		}
 	 return h_recev_start;
@@ -1744,8 +1816,7 @@ u8 send_speed_pack(u8 flag,u8 speed_flag)
 					 break;
 				 }
 				 default:
-					 break;
-			 
+					 break;		 
 			 }
 	     buf[0]=0x7E; 			  			 
 			 for(i=0;i<len;i++)

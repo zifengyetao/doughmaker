@@ -212,7 +212,7 @@ void UART_1_vInit(void)//下位机串口
 	P1_2_set_mode(OUTPUT_PP_AF7);
 	P1_3_set_mode(INPUT);
 	
- WR_REG(USIC0_CH1->DX0CR, USIC_CH_DX0CR_DSEL_Msk, USIC_CH_DX0CR_DSEL_Pos, 1);//输入引脚设置  p1.2接收
+  WR_REG(USIC0_CH1->DX0CR, USIC_CH_DX0CR_DSEL_Msk, USIC_CH_DX0CR_DSEL_Pos, 1);//输入引脚设置  p1.2接收
 	USIC0_CH1->DX0CR |= 0x0001;//DX0D  P1.2
  //    // Step 3: 内核状态寄存器配置 - 使能模块，模块 + MODEN位保护
 //	//         USIC_CH_KSCFG ---RM1.1 Page500
@@ -323,7 +323,7 @@ void USIC0_2_IRQHandler(void)
 
 	  USART_RX_BUF[recev_end] =(USIC0_CH0->RBUF) ;												//读取接收到的数据
 
-		Data = RD_REG(USIC0_CH0->RBUF ,USIC_CH_RBUF_DSR_Msk ,USIC_CH_RBUF_DSR_Pos  );
+		Data = RD_REG(USIC0_CH0->RBUF ,USIC_CH_RBUF_DSR_Msk ,USIC_CH_RBUF_DSR_Pos);
 	  recev_end++;		
 		if(recev_end>=1024)
 		{
@@ -365,7 +365,11 @@ void USIC0_3_IRQHandler(void)
 	  USART_RX_BUF_DOWN[recev_end_down] =(USIC0_CH1->RBUF) ;												//读取接收到的数据
 
 		Data = RD_REG(USIC0_CH1->RBUF ,USIC_CH_RBUF_DSR_Msk ,USIC_CH_RBUF_DSR_Pos  );
-	  recev_end_down++;		
+	  recev_end_down++;	
+		if(recev_end_down==2)
+		{
+			__nop();
+		}			
 		if(recev_end_down>=1024)
 		{
 			recev_end_down=0;
@@ -399,7 +403,7 @@ void DealLcdMsg(void)
 }
 void Deal_Down_Msg(void)
 {
-		if(date1flag_down==1)//接收完成标志   定时器中断 
+	if(date1flag_down==1)//接收完成标志   定时器中断 
 	{
 		if(recev_start_down!=recev_end_down)
 		{

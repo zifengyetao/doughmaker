@@ -61,5 +61,6 @@ u8 send_lcd_pack_time(u8 grade,u32 address,u32 da);
 #define SET 0x72 
 #define ASK 0x3f 
 #define RESET 0x63
+#define ERROR 0x66
 #define stop_speed_flag 0x05 
 #endif

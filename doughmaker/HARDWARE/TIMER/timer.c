@@ -4,7 +4,7 @@
 #include "UART.h"
 // values calculated for 6.4 ms timer period
 #define TMR_VAL	50      // 周期=（ 1024(分频)/8M ）*(TMR_VAL)
- #define TMR_VAL_1	1      // 周期=（ 1024(分频)/8M ）*(TMR_VAL)
+#define TMR_VAL_1	1      // 周期=（ 1024(分频)/8M ）*(TMR_VAL)
 extern  uint8_t date1flag;
 extern  uint8_t date1flag_down;
 void CCU40_0_IRQHandler(void)						//CCU40中断函数   定时器

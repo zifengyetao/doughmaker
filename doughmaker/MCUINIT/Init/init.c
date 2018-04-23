@@ -34,13 +34,19 @@ void LCD_EE_Init()
 			send_lcd_pack(WriteData,0x00080010,Hand_Read_data[2]);//慢速
 			
 			send_lcd_pack(WriteData,0x00080004,Auto_Read_data[0]);//勾快速
+			send_lcd_pack(WriteTime,0x0002FFE4,Auto_Read_data[0]*60);
 			send_lcd_pack(WriteData,0x00080006,Auto_Read_data[2]);//勾慢速
+			send_lcd_pack(WriteTime,0x0002FFE8,Auto_Read_data[2]*60);
 			send_lcd_pack(WriteData,0x00080008,Auto_Read_data[4]);//暂停
+			send_lcd_pack(WriteTime,0x0002FFEC,Auto_Read_data[4]*60);
 			send_lcd_pack(WriteData,0x0008000A,Auto_Read_data[6]);//桶快速
+			send_lcd_pack(WriteTime,0x0002FFF0,Auto_Read_data[6]*60);
 			send_lcd_pack(WriteData,0x0008000C,Auto_Read_data[8]);//桶慢速
+			send_lcd_pack(WriteTime,0x0002FFF4,Auto_Read_data[8]*60);
 	 
 }
 
+extern int proce_flag[5];
 void Lcd_Show_Init()
 {
 	//----------------页面1 手动
@@ -72,10 +78,13 @@ void Lcd_Show_Init()
 					//send_lcd_pack(WriteData,0x0008000C,0x0001);// 
 					
 					send_lcd_pack(WriteData,0x00080020,0x0001);//打钩 1是打钩 0是不打钩
+					proce_flag[0] = 1;
 					send_lcd_pack(WriteData,0x00080022,0x0000);//打钩 1是打钩 0是不打钩
 					send_lcd_pack(WriteData,0x00080024,0x0001);//打钩 1是打钩 0是不打钩
+					proce_flag[2] = 1;
 					send_lcd_pack(WriteData,0x00080026,0x0000);//打钩 1是打钩 0是不打钩
 					send_lcd_pack(WriteData,0x00080028,0x0001);//打钩 1是打钩 0是不打钩
+					proce_flag[4] = 1;
 
 	
 		send_lcd_pack(WriteTime,0x0002FFE0,0x0000);//赋值

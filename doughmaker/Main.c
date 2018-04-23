@@ -12,9 +12,6 @@
 u8 write_test[1] = {15};
 u8 read_test[11] = {0x72,0x41,0x31,0x35,0x30,0x30,0x42,0x30,0x35,0x30,0x30};
 extern int i;
-int sum_ADD = 0;
-int wxt;
-u8 sumsum;
 int main(void)
 {  
 	 MCU_vInit();     //MCU 初始化
@@ -30,7 +27,7 @@ int main(void)
 			 DealLcdMsg();	//触摸屏 
 			 Deal_Down_Msg();//下面单片机串口
 		   //定时询问故障
-			 send_speed_pack(ASK,0x3f);
+			 //send_speed_pack(ASK,ERROR);	
 			 WDT_Clear();
 	 }
 }

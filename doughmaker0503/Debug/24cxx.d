@@ -1,0 +1,13 @@
+.\debug\24cxx.o: HARDWARE\24CXX\24cxx.c
+.\debug\24cxx.o: HARDWARE\24CXX\24cxx.h
+.\debug\24cxx.o: .\HARDWARE\IIC\myiic.h
+.\debug\24cxx.o: .\MCUINIT\datatransfer.h
+.\debug\24cxx.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\24cxx.o: .\Source\gpio_xmc1100_tssop38.h
+.\debug\24cxx.o: .\Startup\XMC1100.h
+.\debug\24cxx.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm0.h
+.\debug\24cxx.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+.\debug\24cxx.o: D:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+.\debug\24cxx.o: .\Startup\system_XMC1100.h
+.\debug\24cxx.o: .\Startup\XMC1000_RomFunctionTable.h
+.\debug\24cxx.o: .\MCUINIT\delay.h
